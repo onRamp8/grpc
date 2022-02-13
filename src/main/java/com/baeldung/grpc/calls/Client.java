@@ -1,4 +1,4 @@
-package com.baeldung.grpc.streaming;
+package com.baeldung.grpc.calls;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import com.baeldung.grpc.streaming.HealthStatus;
+import com.baeldung.grpc.streaming.Stock;
+import com.baeldung.grpc.streaming.StockQuote;
+import com.baeldung.grpc.streaming.StockQuoteProviderGrpc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

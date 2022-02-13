@@ -1,7 +1,5 @@
-package com.baeldung.grpc.errorhandling;
+package com.baeldung.grpc.calls;
 
-import com.baeldung.grpc.streaming.Client;
-import com.baeldung.grpc.streaming.Server;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.junit.jupiter.api.AfterAll;
@@ -13,7 +11,14 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestStock {
+/*
+ *  Test the 4 types of gRPC calls
+ *  1. Unary
+ *  2. Server side stream
+ *  3. Client side stream
+ *  4. Bi-directional stream
+ */
+public class TestGrpcCallTypes {
   private static final int PORT = 8088;
   private static final String SERVER_URL = "localhost:8088";
   private static final ManagedChannel CHANNEL = ManagedChannelBuilder.forTarget(SERVER_URL)
