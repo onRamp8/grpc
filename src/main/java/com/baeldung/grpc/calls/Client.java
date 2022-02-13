@@ -165,6 +165,7 @@ public class Client {
     }
 
      public static void main(String[] args) throws InterruptedException {
+        // run bi-directional from command line
         String target = "localhost:8980";
         if (args.length > 0) {
             target = args[0];
@@ -175,11 +176,6 @@ public class Client {
             .build();
         try {
             Client client = new Client(channel);
-
-            client.serverSideStreamingListOfStockPrices();
-
-            client.clientSideStreamingGetStatisticsOfStocks();
-
             client.bidirectionalStreamingGetListsStockQuotes();
 
         } finally {
