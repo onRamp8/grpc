@@ -1,7 +1,7 @@
 package com.baeldung.grpc.errorhandling;
 
-import com.baeldung.grpc.streaming.StockClient;
-import com.baeldung.grpc.streaming.StockServer;
+import com.baeldung.grpc.streaming.Client;
+import com.baeldung.grpc.streaming.Server;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.junit.jupiter.api.AfterAll;
@@ -20,15 +20,15 @@ public class TestStock {
       .usePlaintext()
       .build();
 
-  private static StockServer server = new StockServer(PORT);
-  private static StockClient client;
+  private static Server server = new Server(PORT);
+  private static Client client;
 
   @BeforeAll
   public static void setup() throws Exception {
     server.start();
     sleep(TimeUnit.SECONDS.toMillis(1));
 
-    client = new StockClient(CHANNEL);
+    client = new Client(CHANNEL);
   }
 
   @AfterAll
@@ -39,7 +39,7 @@ public class TestStock {
 
   @Test
   public void testUnaryCall() {
-    assertEquals(StockServer.HEALTH_STATUS_ALIVE,
+    assertEquals(Server.HEALTH_STATUS_ALIVE,
         client.serverHealth());
   }
 
@@ -60,7 +60,7 @@ public class TestStock {
   @Test
   public void testBidirectionalStream() throws Exception {
     int numReceived = 0;
-      int numExpectedBiDirectional = client.getNumInitializedStocks() * StockServer.NUM_RESPONSES_PER_REQUEST;
+      int numExpectedBiDirectional = client.getNumInitializedStocks() * Server.NUM_RESPONSES_PER_REQUEST;
       numReceived = client.bidirectionalStreamingGetListsStockQuotes();
       assertEquals(numExpectedBiDirectional, numReceived);
   }

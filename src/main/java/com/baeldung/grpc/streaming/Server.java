@@ -4,23 +4,21 @@ import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
-public class StockServer {
+public class Server {
 
     public static final String HEALTH_STATUS_ALIVE = "Alive";
     public static final int NUM_RESPONSES_PER_REQUEST = 5;
-    private static final Logger logger = LoggerFactory.getLogger(StockServer.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(Server.class.getName());
     private final int port;
-    private final Server server;
+    private final io.grpc.Server server;
 
-    public StockServer(int port) {
+    public Server(int port) {
         this.port = port;
         server = ServerBuilder.forPort(port)
             .addService(new StockService())
@@ -37,7 +35,7 @@ public class StockServer {
                 public void run() {
                     System.err.println("shutting down server");
                     try {
-                        StockServer.this.stop();
+                        Server.this.stop();
                     } catch (InterruptedException e) {
                         e.printStackTrace(System.err);
                     }
@@ -54,10 +52,10 @@ public class StockServer {
     }
 
     public static void main(String[] args) throws Exception {
-        StockServer stockServer = new StockServer(8980);
-        stockServer.start();
-        if (stockServer.server != null) {
-            stockServer.server.awaitTermination();
+        Server server = new Server(8980);
+        server.start();
+        if (server.server != null) {
+            server.server.awaitTermination();
         }
     }
 

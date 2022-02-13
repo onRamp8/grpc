@@ -20,14 +20,14 @@ import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
-public class StockClient {
-    private static final Logger logger = LoggerFactory.getLogger(StockClient.class.getName());
+public class Client {
+    private static final Logger logger = LoggerFactory.getLogger(Client.class.getName());
 
     private final StockQuoteProviderBlockingStub blockingStub;
     private final StockQuoteProviderStub nonBlockingStub;
     private List<Stock> stocks = new ArrayList<>();
 
-    public StockClient(Channel channel) {
+    public Client(Channel channel) {
         
         blockingStub = StockQuoteProviderGrpc.newBlockingStub(channel);
         nonBlockingStub = StockQuoteProviderGrpc.newStub(channel);
@@ -170,7 +170,7 @@ public class StockClient {
             .usePlaintext()
             .build();
         try {
-            StockClient client = new StockClient(channel);
+            Client client = new Client(channel);
 
             client.serverSideStreamingListOfStockPrices();
 
