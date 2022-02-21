@@ -82,6 +82,10 @@ public class Server {
             logger.debug("health request completed. Response sent");
         }
 
+        /*
+         * the client will get a list from the blocking queue to
+         * iterate through
+         */
         @Override
         public void serverSideStreamingGetListStockQuotes(Stock request, StreamObserver<StockQuote> responseObserver) {
             logger.info("list of quotes request received for stock: {}", request.getTickerSymbol());
@@ -99,6 +103,9 @@ public class Server {
             logger.debug("completed work for list of quotes request");
         }
 
+        /*
+         * The client will call onNext when it wants to get the price
+         */
         @Override
         public StreamObserver<Stock> clientSideStreamingGetStatisticsOfStocks(final StreamObserver<StockQuote> responseObserver) {
             logger.info("statistics request received");
@@ -142,12 +149,15 @@ public class Server {
                 public void onNext(Stock request) {
 
                     for (int i = 1; i <= NUM_RESPONSES_PER_REQUEST; i++) {
-
                         StockQuote stockQuote = StockQuote.newBuilder()
                             .setPrice(fetchStockPriceBid(request))
                             .setOfferNumber(i)
                             .setDescription("Price for stock:" + request.getTickerSymbol())
                             .build();
+
+                        logger.info("Response for symbol: " + request.getTickerSymbol()
+                            + ", price: " + stockQuote.getPrice());
+
                         responseObserver.onNext(stockQuote);
                     }
                 }
