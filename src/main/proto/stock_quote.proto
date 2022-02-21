@@ -22,18 +22,9 @@ service StockQuoteProvider {
 }
 
 // application data model
-message HealthStatus {
-    string status = 1;
-}
+// TODO: 1- create health status class with string status element
 
-message Stock {
-   string ticker_symbol = 1;
-   string company_name = 2;
-   string description = 3;
-}
+// TODO: 4 - create stock with string, ticker, string company-name, string description
 
-message StockQuote {
-   double price = 1;
-   int32 offer_number = 2;
-   string description = 3;
-}
+// TODO: 5 - create stock quote data model with
+// - double for price, int32 for offer, string for description

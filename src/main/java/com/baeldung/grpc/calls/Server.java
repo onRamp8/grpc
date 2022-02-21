@@ -72,13 +72,8 @@ public class Server {
         public void unaryCallForServerHealth(HealthStatus request,
                                              StreamObserver<HealthStatus> responseObserver) {
             logger.info("health request received");
+            // TODO: 2 - implement server health check
 
-            HealthStatus response = HealthStatus.newBuilder()
-                .setStatus(HEALTH_STATUS_ALIVE)
-                .build();
-
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
             logger.debug("health request completed. Response sent");
         }
 
@@ -89,18 +84,7 @@ public class Server {
         @Override
         public void serverSideStreamingGetListStockQuotes(Stock request, StreamObserver<StockQuote> responseObserver) {
             logger.info("list of quotes request received for stock: {}", request.getTickerSymbol());
-
-            for (int i = 1; i <= NUM_RESPONSES_PER_REQUEST; i++) {
-
-                StockQuote stockQuote = StockQuote.newBuilder()
-                    .setPrice(fetchStockPriceBid(request))
-                    .setOfferNumber(i)
-                    .setDescription("Price for stock:" + request.getTickerSymbol())
-                    .build();
-                responseObserver.onNext(stockQuote);
-            }
-            responseObserver.onCompleted();
-            logger.debug("completed work for list of quotes request");
+            // TODO: 6 - implement server side of server streaming
         }
 
         /*
@@ -109,70 +93,15 @@ public class Server {
         @Override
         public StreamObserver<Stock> clientSideStreamingGetStatisticsOfStocks(final StreamObserver<StockQuote> responseObserver) {
             logger.info("statistics request received");
-
-            return new StreamObserver<Stock>() {
-                int count;
-                double price = 0.0;
-                StringBuffer sb = new StringBuffer();
-
-                @Override
-                public void onNext(Stock stock) {
-                    count++;
-                    price = +fetchStockPriceBid(stock);
-                    sb.append(":")
-                        .append(stock.getTickerSymbol());
-                }
-
-                @Override
-                public void onCompleted() {
-                    responseObserver.onNext(StockQuote.newBuilder()
-                        .setPrice(price / count)
-                        .setDescription("Statistics-" + sb.toString())
-                        .build());
-                    responseObserver.onCompleted();
-                    logger.debug("completed work for statistics request");
-                }
-
-                @Override
-                public void onError(Throwable t) {
-                    logger.warn("error:{}", t.getMessage());
-                }
-            };
+            // TODO: 8 - server side of client streaming
+            return null;
         }
 
         @Override
         public StreamObserver<Stock> bidirectionalStreamingGetListsStockQuotes(final StreamObserver<StockQuote> responseObserver) {
             logger.info("bi directional request received");
-
-            return new StreamObserver<Stock>() {
-                @Override
-                public void onNext(Stock request) {
-
-                    for (int i = 1; i <= NUM_RESPONSES_PER_REQUEST; i++) {
-                        StockQuote stockQuote = StockQuote.newBuilder()
-                            .setPrice(fetchStockPriceBid(request))
-                            .setOfferNumber(i)
-                            .setDescription("Price for stock:" + request.getTickerSymbol())
-                            .build();
-
-                        logger.info("Response for symbol: " + request.getTickerSymbol()
-                            + ", price: " + stockQuote.getPrice());
-
-                        responseObserver.onNext(stockQuote);
-                    }
-                }
-
-                @Override
-                public void onCompleted() {
-                    responseObserver.onCompleted();
-                    logger.debug("completed work for bi-directional request");
-                }
-
-                @Override
-                public void onError(Throwable t) {
-                    logger.warn("error:{}", t.getMessage());
-                }
-            };
+            // TODO: 10 - server side of bi-directional streaming
+            return null;
         }
     }
 
