@@ -12,19 +12,16 @@ option objc_class_prefix = "RTG";
 // application service model
 service StockQuoteProvider {
 
-  rpc unaryCallForServerHealth(HealthStatus) returns (HealthStatus) {}
-
-  rpc serverSideStreamingGetListStockQuotes(Stock) returns (stream StockQuote) {}
-
-  rpc clientSideStreamingGetStatisticsOfStocks(stream Stock) returns (StockQuote) {}
-
-  rpc bidirectionalStreamingGetListsStockQuotes(stream Stock) returns (stream StockQuote) {}
+  // TODO: 4 create server side streaming: parameter Stock, return StockQuote stream
+  // TODO: 5 create server side streaming: parameter Stock, return StockQuote stream
+  // TODO: 6 create client side streaming: parameter Stock stream, return StockQuote
+  // TODO: 7 create bi-directional streaming: parameter Stock stream, return StockQuote stream
 }
 
-// application data model
-// TODO: 1- create health status class with string status element
-
-// TODO: 4 - create stock with string, ticker, string company-name, string description
-
-// TODO: 5 - create stock quote data model with
-// - double for price, int32 for offer, string for description
+// application data model (messages)
+// TODO: 1- add string element: status, to HealthStatus message
+message HealthStatus {
+ }
+// TODO: 2 - create Stock message with elements: string, ticker_symbol, string company_name, string description
+// TODO: 3 - create StockQuote message with elements:
+// - double for price, int32 for offer_number, string for description

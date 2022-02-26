@@ -72,7 +72,7 @@ public class Server {
         public void unaryCallForServerHealth(HealthStatus request,
                                              StreamObserver<HealthStatus> responseObserver) {
             logger.info("health request received");
-            // TODO: 2 - implement server health check
+            // TODO: 9 - implement server health check
 
             logger.debug("health request completed. Response sent");
         }
@@ -84,7 +84,7 @@ public class Server {
         @Override
         public void serverSideStreamingGetListStockQuotes(Stock request, StreamObserver<StockQuote> responseObserver) {
             logger.info("list of quotes request received for stock: {}", request.getTickerSymbol());
-            // TODO: 6 - implement server side of server streaming
+            // TODO: 8 - implement server side of server streaming
         }
 
         /*
@@ -93,14 +93,14 @@ public class Server {
         @Override
         public StreamObserver<Stock> clientSideStreamingGetStatisticsOfStocks(final StreamObserver<StockQuote> responseObserver) {
             logger.info("statistics request received");
-            // TODO: 8 - server side of client streaming
+            // TODO: 11 - server side of client streaming
             return null;
         }
 
         @Override
         public StreamObserver<Stock> bidirectionalStreamingGetListsStockQuotes(final StreamObserver<StockQuote> responseObserver) {
             logger.info("bi directional request received");
-            // TODO: 10 - server side of bi-directional streaming
+            // TODO: 14 - server side of bi-directional streaming
             return null;
         }
     }

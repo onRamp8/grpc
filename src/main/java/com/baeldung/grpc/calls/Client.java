@@ -40,25 +40,25 @@ public class Client {
 
     public String serverHealth() {
         logger.info("######START EXAMPLE######: Unary Call - list of Stock prices from a given stock");
-        // TODO: 3 - implement client health
+        // TODO: 10 - implement client health. testUnaryCall should pass after this is implemented
         return null;
     }
 
     public int serverSideStreamingListOfStockPrices() {
         logger.info("######START EXAMPLE######: ServerSideStreaming - list of Stock prices from a given stock");
-        // TODO: 7 - implement client side of server streaming
+        // TODO: 12 - implement client side of server streaming. testServerSideStream should pass after this is implemented
         return -1;
     }
 
     public int clientSideStreamingGetStatisticsOfStocks() throws InterruptedException {
         logger.info("######START EXAMPLE######: ClientSideStreaming - getStatisticsOfStocks from a list of stocks");
-        // TODO: 9 - server side of client streaming
+        // TODO: 13 - server side of client streaming. testClientSideStream should pass after this is implemented
         return -1;
     }
 
     public int bidirectionalStreamingGetListsStockQuotes() throws InterruptedException{
         logger.info("#######START EXAMPLE#######: BidirectionalStreaming - getListsStockQuotes from list of stocks");
-        // TODO: 11 - server side of bi-directional streaming
+        // TODO: 15 - server side of bi-directional streaming. testBidirectionalStream should pass after this is implemented
         return -1;
     }
 
