@@ -1,28 +1,19 @@
 package com.baeldung.grpc.calls;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
-import com.baeldung.grpc.streaming.HealthStatus;
 import com.baeldung.grpc.streaming.Stock;
-import com.baeldung.grpc.streaming.StockQuote;
 import com.baeldung.grpc.streaming.StockQuoteProviderGrpc;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baeldung.grpc.streaming.StockQuoteProviderGrpc.StockQuoteProviderBlockingStub;
 import com.baeldung.grpc.streaming.StockQuoteProviderGrpc.StockQuoteProviderStub;
-
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
-import io.grpc.StatusRuntimeException;
-import io.grpc.stub.StreamObserver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Client {
     private static final Logger logger = LoggerFactory.getLogger(Client.class.getName());
