@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class TestGrpcCallTypes {
   private static final int PORT = 8088;
-  private static final String SERVER_URL = "localhost:8088";
+  private static final String SERVER_URL = "localhost:" + PORT;
   private static final ManagedChannel CHANNEL = ManagedChannelBuilder.forTarget(SERVER_URL)
       .usePlaintext()
       .build();

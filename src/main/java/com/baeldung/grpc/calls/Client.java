@@ -58,8 +58,10 @@ public class Client {
             .build();
         Iterator<StockQuote> stockQuotes;
         try {
+
             logger.info("REQUEST - ticker symbol {}", request.getTickerSymbol());
             stockQuotes = blockingStub.serverSideStreamingGetListStockQuotes(request);
+
             for (int i = 1; stockQuotes.hasNext(); i++) {
                 StockQuote stockQuote = stockQuotes.next();
                 logger.info("RESPONSE - Price #" + i + ": {}", stockQuote.getPrice());
@@ -80,7 +82,8 @@ public class Client {
         StreamObserver<StockQuote> responseObserver = new StreamObserver<StockQuote>() {
             @Override
             public void onNext(StockQuote summary) {
-                logger.info("RESPONSE, got stock statistics - Average Price: {}, description: {}", summary.getPrice(), summary.getDescription());
+                logger.info("RESPONSE, got stock statistics - Average Price: {}, description: {}",
+                    summary.getPrice(), summary.getDescription());
                 received.add(summary);
             }
 

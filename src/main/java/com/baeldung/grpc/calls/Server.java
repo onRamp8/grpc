@@ -117,6 +117,7 @@ public class Server {
 
                 @Override
                 public void onNext(Stock stock) {
+                    logger.debug("adding stock to statistics: " + stock.getTickerSymbol());
                     count++;
                     price = +fetchStockPriceBid(stock);
                     sb.append(":")
