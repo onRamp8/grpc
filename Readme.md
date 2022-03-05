@@ -1,20 +1,19 @@
 # On Ramp 8
-Repo holds several examples of using gRPC. Branches are organized by
-problem/topic and solution/topic. For example:
+All code summaries can be seen in video form on [tiktok](https://www.tiktok.com/@onRamp8)
+
+This repo holds several examples of using gRPC. Branches are organized by
+problem/topic and solution/topic. You can run the tests in master or
+the solution branch to see a working example. Working code is removed
+in problem branches so different implementations can be worked through.
+For example, checkout to create your own implementation following Test 
+Driven Development
 ```
-# checkout to create your own implementation following Test Driven Development
 git checkout problem/call-types
-
-# checkout to see a working solution that makes the test pass
-git checkout solution/call-types
 ```
-
 
 ## Call Types
-Run `call_types.sh` to print out the todos that summarize
-the tasks that need to be completed to make the tests in
+Run 
 [TestGrpcCallTypes](src/test/java/com/baeldung/grpc/calls/TestGrpcCallTypes.java)
-pass. The tasks are numbered, so start with `TODO: 1`, then do `TODO: 2`, then
-`TODO: 3`, ect. Note the completed solution is on branch `solution/call-types`
+to see the different examples in action.
 
 Lastly this is code is based on code from [baeldung](https://www.baeldung.com/java-grpc-streaming)
