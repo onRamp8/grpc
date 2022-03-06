@@ -5,8 +5,8 @@ This repo holds several examples of using gRPC. Branches are organized by
 problem/topic and solution/topic. You can run the tests in master or
 the solution branch to see a working example. Working code is removed
 in problem branches so different implementations can be worked through.
-For example, checkout to create your own implementation following Test 
-Driven Development
+For example, checkout a problem branch to create your own implementation 
+following Test Driven Development
 ```
 git checkout problem/call-types
 ```
